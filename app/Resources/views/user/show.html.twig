@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Person</h1>
+    <h1>User</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ person.id }}</td>
+                <td>{{ user.id }}</td>
             </tr>
             <tr>
                 <th>Firstname</th>
-                <td>{{ person.firstname }}</td>
+                <td>{{ user.firstname }}</td>
             </tr>
             <tr>
                 <th>Lastname</th>
-                <td>{{ person.lastname }}</td>
+                <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>Mail</th>
-                <td>{{ person.mail }}</td>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
             </tr>
             <tr>
                 <th>Password</th>
-                <td>{{ person.password }}</td>
+                <td>{{ user.password }}</td>
             </tr>
         </tbody>
     </table>
@@ -33,7 +33,7 @@
             <a href="{{ path('user_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('user_edit', { 'id': person.id }) }}">Edit</a>
+            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

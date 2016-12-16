@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>People list</h1>
+    <h1>Users list</h1>
 
     <table>
         <thead>
@@ -9,26 +9,26 @@
                 <th>Id</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Mail</th>
+                <th>Email</th>
                 <th>Password</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for person in people %}
+        {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': person.id }) }}">{{ person.id }}</a></td>
-                <td>{{ person.firstname }}</td>
-                <td>{{ person.lastname }}</td>
-                <td>{{ person.mail }}</td>
-                <td>{{ person.password }}</td>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_show', { 'id': person.id }) }}">show</a>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': person.id }) }}">edit</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new person</a>
+            <a href="{{ path('user_new') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}

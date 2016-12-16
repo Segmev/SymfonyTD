@@ -5,11 +5,14 @@ security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     encoders:
         Symfony\Component\Security\Core\User\User:
-            algorithm: bcrypt
+            algorithm: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,12 +25,18 @@ security:
             security: false
 
         main:
+            logout:
+              path:   /logout
+              target: /
+
             form_login:
-              failure_path: /
+              login_path: login
+              check_path: login
             anonymous: true
 
 
     access_control:
+            - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/user/, roles: ROLE_ADMIN }
             # activate different ways to authenticate
 

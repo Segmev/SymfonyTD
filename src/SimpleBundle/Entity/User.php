@@ -2,15 +2,16 @@
 
 namespace SimpleBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Person
+ * User
  *
- * @ORM\Table(name="person")
- * @ORM\Entity(repositoryClass="SimpleBundle\Repository\PersonRepository")
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="SimpleBundle\Repository\UserRepository")
  */
-class Person
+class User implements UserInterface
 {
     /**
      * @var int
@@ -38,9 +39,9 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
-    private $mail;
+    private $email;
 
     /**
      * @var string
@@ -53,7 +54,7 @@ class Person
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,7 +65,7 @@ class Person
      * Set firstname
      *
      * @param string $firstname
-     * @return Person
+     * @return User
      */
     public function setFirstname($firstname)
     {
@@ -76,7 +77,7 @@ class Person
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -87,7 +88,7 @@ class Person
      * Set lastname
      *
      * @param string $lastname
-     * @return Person
+     * @return User
      */
     public function setLastname($lastname)
     {
@@ -99,7 +100,7 @@ class Person
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -107,33 +108,33 @@ class Person
     }
 
     /**
-     * Set mail
+     * Set email
      *
-     * @param string $mail
-     * @return Person
+     * @param string $email
+     * @return User
      */
-    public function setMail($mail)
+    public function setEmail($email)
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get mail
+     * Get email
      *
-     * @return string 
+     * @return string
      */
-    public function getMail()
+    public function getEmail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
      * Set password
      *
      * @param string $password
-     * @return Person
+     * @return User
      */
     public function setPassword($password)
     {
@@ -145,10 +146,26 @@ class Person
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getRoles()
+    {
+      return array('ROLE_USER');
+    }
+    public function getSalt()
+    {
+    }
+    public function eraseCredentials()
+    {
     }
 }
