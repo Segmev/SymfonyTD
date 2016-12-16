@@ -4,15 +4,21 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        # in_memory:
+        #     memory:
+        #         users:
+        #             user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+        #             admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        our_db_provider:
+            entity:
+                class: SimpleBundle:User
+                property: email
 
     encoders:
         Symfony\Component\Security\Core\User\User:
             algorithm: plaintext
+        SimpleBundle\Entity\User:
+            algorithm: bcrypt
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
